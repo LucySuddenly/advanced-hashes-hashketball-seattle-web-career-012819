@@ -280,11 +280,27 @@ def long_name_steals_a_ton?
           contents.each do |name, stats|
             stats.each do |statistic, value|
               if statistic == :steals && value > max_steals
-                
+                max_steals = value 
+                steals_name = name
               end
             end
           end
         end
     end 
   end
+  longest_name = 0
+  player_name = ""
+  game_hash.each do |home_or_away, info_category|
+    info_category.each do |info, contents|
+        if contents.is_a?(Hash)
+          contents.each do |name, stats|
+              if name.length > longest_name
+                longest_name = name.length
+                player_name = name
+              end
+          end
+        end
+    end 
+  end
+  player_name == steals_name
 end 
